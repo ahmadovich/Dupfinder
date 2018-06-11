@@ -2,6 +2,7 @@
 Now the script has the results as a dictionary, with keys as hash and value as an array of files resulting in this hash
 Problem now is to merge multiple dictionaries from multiple processes
 Now processes overwrite dictionary values containing same keys instead of appending them
+Uses multiprocessing
 
 '''
 

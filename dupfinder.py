@@ -1,3 +1,7 @@
+'''
+Normal version, no multiprocessing
+'''
+
 import argparse
 from collections import defaultdict
 import os
