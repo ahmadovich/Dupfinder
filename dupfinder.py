@@ -33,7 +33,7 @@ def gethash():
             for file in filenames:
                 filenumber +=1
                 # Join filename to and path to generate full path
-                filepath = os.path.join(curdir,file).encode('utf8')
+                filepath = os.path.join(curdir,file)
                 with open(filepath,'rb') as file_to_hash:
                     # Create/reset a hasher to calculate sha1 for each file
                     hasher = sha1()
