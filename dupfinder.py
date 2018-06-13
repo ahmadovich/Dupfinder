@@ -15,8 +15,11 @@ parser.add_argument('-S' , '--Sync', required = False, action = 'store_true', he
 
 args = parser.parse_args()
 
+filenumber = 0
+
 def gethash():
     
+    global filenumber
     # Create a result dictionary, default values are lists
     resdict = defaultdict(list)
     # Check if arguments are directories
@@ -28,6 +31,7 @@ def gethash():
         # Walk through the directory structure
         for (curdir, subdirs, filenames) in os.walk(dirz) :
             for file in filenames:
+                filenumber +=1
                 # Join filename to and path to generate full path
                 filepath = os.path.join(curdir,file).encode('utf8')
                 with open(filepath,'rb') as file_to_hash:
@@ -41,14 +45,22 @@ def gethash():
         
     
 def main():
-    
-    duplicates = 0
+    dupfiles = 0
+    sets = 0
     result = gethash()
     for i in result.keys():
         if len(result[i]) > 1 :
-            duplicates += 1
+            # Number of duplicate files
+            dupfiles += len(result[i])
+            # Increment duplicate sets by 1
+            sets += 1
             print(result[i])
-    print(duplicates)
+    if dupfiles > 0 :
+        print('\n\n\nDuplicates report:')
+        print('__________________\n\n')
+        print('Checked ', filenumber, ' files')
+        print('Number of duplicate sets: ' , sets)
+        print('Number of duplicate files: ' , dupfiles)
             
   
 if __name__ == '__main__': main()
